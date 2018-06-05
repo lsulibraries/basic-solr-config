@@ -293,7 +293,6 @@
        boosting for the field, and saves some memory).  Only full-text
        fields or fields that need an index-time boost need norms.
    -->
-
    <field name="PID" type="string" indexed="true" stored="true" required="true" />
 
    <field name="PID_kw" type="text_keyword" indexed="true" stored="true" multiValued="false"/>
@@ -337,6 +336,9 @@
    <dynamicField name="*_mdt" type="date"    indexed="true"  stored="true" multiValued="true"/>
    <dynamicField name="*_et" type="edgedText" indexed="true" stored="true" multiValued="true"/>
    <dynamicField name="*_mlt" type="mappedLowerText" indexed="true" stored="true" multiValued='false'/>
+
+   <!-- Rolling multiple date fields into one - for sorting purposes -->
+   <field name="mods_originInfo_dateCreated_sort" type="date" indexed="true" stored="true" multiValued="false" sortMissingLast="true"/>
 
    <!-- uncomment the following to ignore any fields that don't already match an existing
         field name or dynamic field, rather than reporting them as an error.
@@ -383,5 +385,48 @@
       A custom similarity may be specified here, but the default is fine
       for most applications.  -->
  <!-- <similarity class="org.apache.lucene.search.DefaultSimilarity"/> -->
+
+
+  <!--combining into custom sort field-->
+  <copyField source="mods_originInfo_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_edtf_keydate_yes_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_keydate_yes_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_keydate_yes_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_keydate_yes_point_start_qualifier_approximate_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_keydate_yes_point_start_qualifier__dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_keydate_yes_qualifier_approximate_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_keydate_yes_qualifier__dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_keydate_yes_qualifier__dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_keydate_yes_qualifier_inferred_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_encoding_w3cdtf_qualifier__dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_qualifier_approximate_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keydate_yes_point_start_qualifier_approximate_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_qualifier_approximate_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_qualifier__dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_qualifier__dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_qualifier_inferred_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_qualifier_inferred_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_qualifier_questionable_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_point_start_qualifier_questionable_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_qualifier_approximate_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_qualifier_approximate_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_qualifier__dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_qualifier__dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_qualifier_inferred_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_qualifier_inferred_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_qualifier_questionable_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_keyDate_yes_qualifier_questionable_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_point_start_dateIssued_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_qualifier_approximate_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_qualifier__dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+  <copyField source="mods_originInfo_qualifier_inferred_dateCreated_dt" dest="mods_originInfo_dateCreated_sort"/>
+
 
 </schema>
