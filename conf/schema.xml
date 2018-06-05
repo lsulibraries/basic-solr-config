@@ -293,7 +293,7 @@
        boosting for the field, and saves some memory).  Only full-text
        fields or fields that need an index-time boost need norms.
    -->
-   <field name="PID" type="string" indexed="true" stored="true" required="true" />
+   <field name="PID" type="string" indexed="true" stored="true" required="true"/>
 
    <field name="PID_kw" type="text_keyword" indexed="true" stored="true" multiValued="false"/>
 
@@ -337,16 +337,21 @@
    <dynamicField name="*_et" type="edgedText" indexed="true" stored="true" multiValued="true"/>
    <dynamicField name="*_mlt" type="mappedLowerText" indexed="true" stored="true" multiValued='false'/>
 
+
    <!-- Rolling multiple date fields into one - for sorting purposes -->
    <field name="mods_originInfo_dateCreated_sort" type="date" indexed="true" stored="true" multiValued="false" sortMissingLast="true"/>
 
+   <!-- islandora_solution_pack_oralhistories setup. This may collide with other dynamic fields. Use at own risk. -->
+   <!-- <dynamicField name="or_*" type="text" indexed="true" stored="true" multiValued="true"/> -->
+
+   
    <!-- uncomment the following to ignore any fields that don't already match an existing
         field name or dynamic field, rather than reporting them as an error.
         alternately, change the type="ignored" to some other type e.g. "text" if you want
         unknown fields indexed and/or stored by default -->
    <field name="dc.description" type="text_fgs"  indexed="true"  stored="true" multiValued="true"/>
    <dynamicField name="*" type="text_fgs"  indexed="true"  stored="true" multiValued="true"/>
-<field name="_version_" type="long" indexed="true" stored="true"/>
+   <field name="_version_" type="long" indexed="true" stored="true"/>
 
  </fields>
 
